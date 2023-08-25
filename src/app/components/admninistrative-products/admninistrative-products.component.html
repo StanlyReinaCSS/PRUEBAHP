@@ -1,0 +1,61 @@
+<div class="btn-new-config mt-4 mb-3 d-flex align-items-center justify-content-center">
+  <h6 class="subtitle">{{ nombrePagina }}</h6>
+</div>
+
+
+<div class="container mt-5">
+  <form [formGroup]="form" class="shadow p-4 rounded">
+    <div class="mb-3">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" class="form-control" id="title" formControlName="title">
+      <small class="form-text text-danger"
+             *ngIf="form.get('title')?.errors?.['required'] && form.get('title')?.touched">
+        El campo es requerido
+      </small>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Precio</label>
+      <input type="number" class="form-control" id="price" formControlName="price">
+      <small class="form-text text-danger"
+             *ngIf="form.get('price')?.errors?.['required'] && form.get('price')?.touched">
+        El campo es requerido
+      </small>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea class="form-control" id="description" formControlName="description"></textarea>
+      <small class="form-text text-danger"
+             *ngIf="form.get('description')?.errors?.['required'] && form.get('description')?.touched">
+        El campo es requerido
+      </small>
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Categoría</label>
+      <input type="text" class="form-control" id="category" formControlName="category">
+      <small class="form-text text-danger"
+             *ngIf="form.get('category')?.errors?.['required'] && form.get('category')?.touched">
+        El campo es requerido
+      </small>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+      <button type="submit" class="btn btn-primary px-4" (click)="crearProductos(form.value)">Guardar</button>
+      <button type="submit" class="btn btn-secondary px-4" (click)="atras()">Regresar</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- Alerta de éxito oculta por defecto -->
+<div class="alert-container" *ngIf="mostrarAlerta">
+  <div class="alert-overlay"></div>
+  <div class="alert alert-success">
+    ¡Acción exitosa! Tu Petición ha sido enviada.
+  </div>
+</div>
+
+
+
+<!-- Alerta de fracaso oculta por defecto -->
+<div class="alert alert-danger mt-3" role="alert" *ngIf="mostrarError">
+  ¡Acción Inválida! Tu Petición no ha sido enviada.
+</div>

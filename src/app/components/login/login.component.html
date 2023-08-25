@@ -1,0 +1,34 @@
+
+   <div class="card p-4 shadow">
+    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+    <b>El Correo es: eve.holt@reqres.in y la contraseña puede ser cualquiera  </b>
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label for="email" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="email" value="lol" formControlName="email">
+        <small class="text-danger"
+          *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">
+          El campo es requerido
+        </small>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+        <small class="text-danger"
+          *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">
+          El campo es requerido
+        </small>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="crearProductos(form)">Iniciar Sesión</button>
+    </form>
+  
+    <div class="alert-container" *ngIf="mostrarAlerta">
+      <div class="alert-overlay"></div>
+      <div class="alert alert-success">
+        ¡Inicio Sesión exitoso!
+      </div>
+    </div>
+    <div class="alert alert-danger mt-3" role="alert" *ngIf="mostrarError">
+      ¡Inicio Sesión Fallido!
+    </div>
+  </div>

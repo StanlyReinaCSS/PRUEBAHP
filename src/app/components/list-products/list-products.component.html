@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="display-4">Lista de Productos</h1>
+    <button class="btn btn-primary" [routerLink]="['/administracion-productos', 0]">Agregar Producto</button>
+  </div>
+  <p class="lead">Encuentra los mejores productos en nuestra tienda.</p>
+</div>
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">Titulo</th>
+          <th class="text-center">Precio</th>
+          <th class="text-center">Descripción</th>
+          <th class="text-center">Categoria</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of products; let even = even" [ngClass]="{'table-primary': even, 'table-secondary': !even}">
+          <td>{{ item.id }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.category }}</td>
+          <td>
+            <div class="btn-group">
+              <button title="Editar" class="btn btn-primary btn-sm" (click)="editarProducto(item.id)">
+                <i class="fas fa-edit"></i> Editar
+              </button>
+              &nbsp;
+              <button title="Eliminar" class="btn btn-danger btn-sm" (click)="eliminarProductos(item.id)">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="alert-container" *ngIf="mostrarAlerta">
+  <div class="alert-overlay"></div>
+  <div class="alert alert-success">
+    ¡Acción exitosa! Tu Petición ha sido enviada.
+  </div>
+</div>
+
+
+  
